@@ -1,0 +1,166 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+
+body{
+    height: 115vh;
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+}
+
+main{
+    height: 100%;
+    width: 100%;
+}
+
+header{
+    height: 10%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.415);
+}
+
+.separacion_header{
+    height: 100%;
+    width: 2%;
+}
+.header_container{
+    display: flex;
+    align-items: center;
+    width: 60%;
+    height: 100%;
+}
+.logo{
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    height: 100%;
+    width: 35%;
+}
+.logo img{
+    height: 40px;
+    width: auto;
+}
+.text_header{
+    height: 100%;
+    width: 63%;
+    color: #3cad2a;
+    display: flex;
+    align-items: center;
+}
+
+.text_header h2{
+    font-size: 25px;
+    font-weight: bolder;
+}
+
+.log_out{
+    margin-left: 3%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 25%;
+}
+.log_out a{
+    text-decoration: none;
+    color: black;
+}
+
+.username_container{
+    font-weight: bold;
+}
+
+.firma_section{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    height: 90%;
+    background-color: rgb(252, 252, 252);
+}
+.firma_container{
+    margin-left: 5%;
+    border: 2px solid #3cad2a;
+    margin-top: 4%;
+    height: 90%;
+    width: 40%;
+    background-color: white;
+}
+
+.code_section{
+    border: 2px solid #3cad2a;
+    height: 90%;
+    width: 40%;
+    background-color: white;
+}
+
+form{
+    height: 100%;
+    width: 100%;
+}
+
+.firma_logo{
+    width: 100%;
+    height: 12%;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+}
+.firma_logo img{
+    width: 150px;
+    height: auto;
+    margin-left: 2%;
+}
+
+.firma_nombre{
+    margin-left: 3%;
+    font-size: 17px;
+    font-weight: bold;
+    letter-spacing: .5px;
+    height: 25px;
+}
+
+.firma_campos{
+    font-size: 16px;
+    margin-left: 3%;
+    height: 25px;
+}
+
+.firma_mail{
+    margin-left: 3%;
+    font-size: 16px;
+}
+
+.firma_telefono{
+    display: flex;
+    margin-left: 3%;
+    height: 25px;
+}
+
+.firma_banner{
+    margin-left: 3%;
+    width: 315px;
+}
+
+.firma_banner img{
+    height: auto;
+    width: 100%;
+}
+
+.firma_footer{
+    margin-left: 3%;
+    width: 95%;
+    font-size: 12px;
+    height: 20%;
+}
+.firma_footer p{
+    margin: 0;
+    font-size: 10px;
+}
+
+.separador{
+    height: 10%;
+}
+
+.CodeMirror{
+    height: 100%;
+}

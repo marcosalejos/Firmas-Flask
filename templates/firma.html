@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Firma</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/firma.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='codemirror/lib/codemirror.css') }}">
+    <script src="{{ url_for('static', filename='codemirror/lib/codemirror.js') }}"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='codemirror/lib/codemirror.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='codemirror/theme/monokai.css') }}">
+    <script src="{{ url_for('static', filename='codemirror/mode/xml/xml.js') }}"></script>
+    <script src="{{ url_for('static', filename='codemirror/addon/edit/closetag.js') }}"></script>
+    <script src="{{ url_for('static', filename='codemirror/addon/edit/closebrackets.js') }}"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <main>
+        <header>
+            <div class="separacion_header">
+
+            </div>
+            <div class="header_container" style="justify-content: space-between;">
+                <div class="logo">
+                    <img src="https://okoa.tech/wp-content/uploads/2023/04/Logo-Okoa-B.png" alt="LOGO">
+                </div>
+                <div class="text_header">
+                    <h2>Generador de Firmas</h2>
+                </div>
+            </div>
+            <div class="header_container" style="justify-content: end; width: 36%;">
+                <div class="username_container">
+                   {{context.Email}} 
+                </div>
+                <div class="log_out">
+                    <a href="http://localhost:5000/logout">Cerrar Sesión</a>
+                </div>
+            </div>
+            <div class="separacion_header">
+
+            </div>
+        </header>
+        <section class="firma_section">
+            <div id="codigo" class="firma_container">
+                <div class="firma_logo">
+                    <img src="https://okoa.tech/wp-content/uploads/2023/04/Logo-Okoa-B.png" alt="LOGO">
+                </div>
+                <br>
+                <div class="firma_nombre">
+                    {{context.Nombre}}
+                </div>
+                <div class="firma_campos">
+                    Área de {{context.Departamento}}
+                </div>
+                <div class="firma_campos">
+                    {{context.Puesto}}
+                </div>
+                <br>
+                <div class="firma_telefono">
+                    <div style="margin-right: 1%;">
+                        Móvil: {{context.Telefono}}
+                    </div>
+                    <div>
+                        Ext: {{context.Ext}}
+                    </div>
+                </div>
+                <br>
+                <div class="firma_mail">
+                    {{context.Email}}
+                </div>
+                <br>
+                <div class="firma_banner">
+                    <img src="https://okoa.tech/firma/Firma-email-OKOA(x3).gif?${gs.nowDateTime()}" alt="Banner">
+                </div>
+                <br>
+                <div class="firma_footer">
+                    <p>
+                        AVISO LEGAL-CLÁUSULA DE PRIVACIDAD.
+                    </p>
+                    <p>
+                        En cumplimiento de lo establecido en el RGPD, sobre Protección de Datos de Carácter Personal y su normativa de desarrollo, le informamos que el responsable de sus datos es: TECSO LEVANTE, S.L. CIF B97442255, CALLE K, PAR 18 B (PG. INDUSTRIAL OLIVERAL), 46190-RIBA-ROJA DE TURIA. La finalidad del tratamiento de los datos para la que usted da su consentimiento será la de gestionar los servicios prestados por la entidad. Los datos proporcionados se conservarán mientras no solicite el cese, se sigan manteniendo relaciones comerciales u obliguen a su conservación otras leyes aplicables. No se cederán datos a terceros en ningún caso salvo obligación legal. Ud. tiene derecho al acceso, rectificación o a solicitar su supresión cuando los datos ya no sean necesarios para los fines que fueron recogidos en los términos previstos en la Ley, que podrá ejercitar mediante escrito dirigido al responsable de los mismos en la dirección anteriormente indicada, o en esta dirección de e-mail. Puede consultar información adicional en: https://www.aemol.com/clausulas.php?B97442255
+                    </p>
+                    <br>
+                    <p>
+                        Este mensaje se dirige exclusivamente a su destinatario y puede contener información privilegiada o confidencial. Si no es vd. el destinatario indicado, queda informado de que la utilización, divulgación y/o copia sin autorización está prohibida en virtud de la legislación vigente. Si ha recibido este mensaje por error, le rogamos que nos lo comunique inmediatamente por esta misma vía y proceda a su destrucción.
+                    </p>
+                </div>
+            </div>
+            <section class="code_section">
+                <form id="formularioCodigo" method="POST" action="/">
+                    <textarea style="height: 100%;" name="raw_data" id="editor" rows="30"></textarea>
+                    <button id="enviarBoton" type="submit">Aplicar</button>
+                 </form>
+            </section>
+            <hr>
+            <div id="data">
+                {{raw_data | safe}}
+            </div>
+        </section>
+        <div class="separador">
+        </div>
+    </main>
+
+    <script type="text/javascript">
+        var editor = CodeMirror.fromTextArea(document.getElementById('editor'),
+            {
+                mode:'xml',
+                theme: 'monokai',
+                lineNumbers: true,
+                autoCloseTags: true,
+                autoCloseBrackets: true
+            }
+        );
+        window.addEventListener('DOMContentLoaded', function() {
+            var codigoGen = document.getElementById('data');
+            var codigoBase = document.getElementById('codigo');
+            if(codigoGen.innerText == ""){
+                codigoGen.innerHTML = codigoBase.innerHTML;
+            }
+            editor.setValue(codigoGen.outerHTML);
+            codigoBase.style.display = 'none';
+        });
+    </script>
+</body>
+</html>
