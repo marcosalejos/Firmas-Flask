@@ -6,43 +6,16 @@ import secrets
 app = Flask(__name__)
 app.secret_key = secrets.token_hex(16)
 
-app.config['SESSION_COOKIE_NAME'] = 'session'
-app.config['SESSION_COOKIE_PATH'] = '/'
-app.config['SESSION_COOKIE_HTTPONLY'] = True
-app.config['SESSION_COOKIE_SECURE'] = True
-app.config['SESSION_COOKIE_SAMESITE'] = 'Lax'
-
 
 # Configura las credenciales de la aplicación registrada en Azure
 CLIENT_ID = '5451bec6-4200-4326-99dc-fea4c8fb8be8'
 CLIENT_SECRET = '2vM8Q~~0XN7Yxc.h1pka9G1qaPPXwEJEvfoPdbds'
-AUTHORITY = 'https://login.microsoftonline.com/846f6db3-c6a6-4131-b084-cf6b63ab8af5'
 SCOPE = ['User.Read']  # Puedes agregar otros permisos según tus necesidades
 
 # Crea un objeto MSAL
 app.config['MSAL_CLIENT'] = msal.ConfidentialClientApplication(
     CLIENT_ID, client_credential=CLIENT_SECRET
 )
-
-def get_user_info(clientID, clientSecret, tenantID, userID):
-
-    token_url = f'https://login.microsoftonline.com/{tenantID}/oauth2/v2.0/token'
-    headers = {'Content-Type': 'application/x-www-form-urlencoded'}
-    data = {
-        'grant_type': 'client_credentials',
-        'client_id': clientID,
-        'client_secret': clientSecret,
-        'scope': 'https://graph.microsoft.com/.default'
-    }
-    response = requests.post(token_url, headers=headers, data=data)
-
-    if response.status_code == 200:
-        access_token = response.json()['access_token']
-        endpoint = f'https://graph.microsoft.com/v1.0/users/{userID}?$select=displayName,mail,userPrincipalName,jobTitle,department,mobilePhone,businessPhones'
-        headers = {'Authorization': f'Bearer {access_token}'}
-        response = requests.get(endpoint, headers=headers)
-        users_info = response.json()
-        return users_info
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
@@ -60,7 +33,7 @@ def index():
         'Departamento':  'Revisar',
         'Puesto':  user['jobTitle'],
         'Telefono':  user['mobilePhone'],
-        'Ext':  user['businessPhones'][0],
+        'Ext':  ext[0],
         'Email': user['userPrincipalName']
     }
     raw_data = "";
