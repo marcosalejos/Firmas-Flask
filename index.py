@@ -8,8 +8,8 @@ app.secret_key = secrets.token_hex(16)
 
 
 # Configura las credenciales de la aplicación registrada en Azure
-CLIENT_ID = '5451bec6-4200-4326-99dc-fea4c8fb8be8'
-CLIENT_SECRET = '2vM8Q~~0XN7Yxc.h1pka9G1qaPPXwEJEvfoPdbds'
+CLIENT_ID = ''
+CLIENT_SECRET = ''
 SCOPE = ['User.Read']  # Puedes agregar otros permisos según tus necesidades
 
 # Crea un objeto MSAL
